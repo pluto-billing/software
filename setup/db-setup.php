@@ -65,16 +65,22 @@
             <div class="uk-width-1-1@s uk-width-1-5@l uk-width-1-3@xl"></div>
             <div class="uk-width-1-1@s uk-width-3-5@l uk-width-1-3@xl">
               <div class="uk-card uk-card-default">
-                <div class="uk-alert-warning" uk-alert>
+                <?php
+                  if (isset($_GET['sqlerror'])) {
+                ?>
+                <div class="uk-alert-danger" uk-alert>
                   <a class="uk-alert-close" uk-close></a>
-                  <p><span class="uk-text-bold">Development Notice:</span> Please be aware that you are viewing a pre-alpha version of Pluto and things are subject to change.</p>
+                  <p><?php echo $_GET['sqlerror'] ?></p>
                 </div>
+                <?php
+                  }
+                ?>
                 <div class="uk-card-header">
                   <span class="uk-text-bold">Step Two:</span> Database Setup
                 </div>
                 <div class="uk-card-body">
                   <center>
-                    <p>Enter the information for the created database below.</p>
+                    <p>Enter the information for the created database below. <span class="uk-text-bold">Important note: database must be empty.</span></p>
                     <form action="resources/process/DbValConn.php" method="POST">
                       <fieldset class="uk-fieldset">
                         <div class="uk-margin">
@@ -89,7 +95,7 @@
                         </div>
                         <div class="uk-margin">
                           <div class="uk-position-relative">
-                            <input name="db-pass" class="uk-input" type="password" placeholder="User Password" required>
+                            <input name="db-pass" class="uk-input" type="password" placeholder="User Password">
                           </div>
                         </div>
                         <div class="uk-margin">
