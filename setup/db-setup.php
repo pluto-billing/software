@@ -75,6 +75,16 @@
                 <?php
                   }
                 ?>
+                <?php
+                  if (isset($_GET['notclean'])) {
+                ?>
+                <div class="uk-alert-danger" uk-alert>
+                  <a class="uk-alert-close" uk-close></a>
+                  <p>The provided database is not empty.</p>
+                </div>
+                <?php
+                  }
+                ?>
                 <div class="uk-card-header">
                   <span class="uk-text-bold">Step Two:</span> Database Setup
                 </div>
