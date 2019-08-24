@@ -65,13 +65,32 @@ if (isset($_POST['submit'])) {
       }
 
       else {
-        $sql = 'CREATE TABLE `pluto-admins` ( `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL, `admin-firstname` varchar(11) NOT NULL, `admin-lastname` varchar(11) NOT NULL, `admin-idn` varchar(255) NOT NULL, `admin-email` varchar(255) NOT NULL, `admin-password` int(11) NOT NULL )';
-        $connection->query($sql) or die();
 
-        session_start();
-        $_SESSION['started'] = true;
+        $filename = '../../../configuration.php';
 
-        header('Location: ../../create-admin.php');
+        if (file_exists($filename)) {
+          header('Location: ../../db-setup.php?configexists');
+        }
+
+        else {
+          $creationfile = '../../../configuration.php';
+          fopen($creationfile, 'w') or die();
+
+          $config[] = "<?php";
+          $config[] = "\$db_host = '$db_host';";
+          $config[] = "\$db_user = '$db_user';";
+          $config[] = "\$db_pass = '$db_pass';";
+          $config[] = "\$db_name = '$db_name';";
+          file_put_contents("../../../configuration.php", implode("\n", $config));
+
+          $sql = 'CREATE TABLE `pluto-admins` ( `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL, `admin-firstname` varchar(11) NOT NULL, `admin-lastname` varchar(11) NOT NULL, `admin-idn` varchar(255) NOT NULL, `admin-email` varchar(255) NOT NULL, `admin-password` int(11) NOT NULL )';
+          $connection->query($sql) or die();
+
+          session_start();
+          $_SESSION['started'] = true;
+
+          header('Location: ../../create-admin.php');
+        }
       }
 
     }
