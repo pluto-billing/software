@@ -55,13 +55,25 @@ if (isset($_POST['submit'])) {
     }
 
     else {
-      $sql = 'CREATE TABLE `pluto-admins` ( `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL, `admin-firstname` varchar(11) NOT NULL, `admin-lastname` varchar(11) NOT NULL, `admin-idn` varchar(255) NOT NULL, `admin-email` varchar(255) NOT NULL, `admin-password` int(11) NOT NULL )';
-      $connection->query($sql);
 
-      session_start();
-      $_SESSION['started'] = true;
+      $check = "SELECT COUNT(*) AS `c` FROM `information_schema`.`tables` WHERE `table_schema` = '$db_name';";
+      $val = $connection->query($check);
+      $result = $val->fetch_assoc();
 
-      header('Location: ../../create-admin.php');
+      if($result['c'] > 0) {
+        header("Location: ../../db-setup.php?notclean");
+      }
+
+      else {
+        $sql = 'CREATE TABLE `pluto-admins` ( `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL, `admin-firstname` varchar(11) NOT NULL, `admin-lastname` varchar(11) NOT NULL, `admin-idn` varchar(255) NOT NULL, `admin-email` varchar(255) NOT NULL, `admin-password` int(11) NOT NULL )';
+        $connection->query($sql) or die();
+
+        session_start();
+        $_SESSION['started'] = true;
+
+        header('Location: ../../create-admin.php');
+      }
+
     }
   }
 
