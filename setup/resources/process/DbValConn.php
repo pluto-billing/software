@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
           $config[] = "\$db_name = '$db_name';";
           file_put_contents("../../../configuration.php", implode("\n", $config));
 
-          $sql = 'CREATE TABLE `pluto-admins` ( `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL, `admin-firstname` varchar(11) NOT NULL, `admin-lastname` varchar(11) NOT NULL, `admin-idn` varchar(255) NOT NULL, `admin-email` varchar(255) NOT NULL, `admin-password` int(11) NOT NULL )';
+          $sql = 'CREATE TABLE `pluto-admins` ( `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL, `admin-firstname` varchar(11) NOT NULL, `admin-lastname` varchar(11) NOT NULL, `admin-idn` varchar(255) NOT NULL, `admin-email` varchar(255) NOT NULL, `admin-password` varchar(255) NOT NULL )';
           $connection->query($sql) or die();
 
           session_start();
