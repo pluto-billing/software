@@ -55,9 +55,13 @@ if (isset($_POST['submit'])) {
     }
 
     else {
-      $sql = 'CREATE TABLE IF NOT EXISTS `test` (`name` varchar(255) not null);';
-      $connection->query($sql) or die();
-      header('Location: ../../db-setup.php?success');
+      $sql = 'CREATE TABLE `pluto-admins` ( `id` int(11) PRIMARY KEY AUTO_INCREMENT NOT NULL, `admin-firstname` varchar(11) NOT NULL, `admin-lastname` varchar(11) NOT NULL, `admin-idn` varchar(255) NOT NULL, `admin-email` varchar(255) NOT NULL, `admin-password` int(11) NOT NULL )';
+      $connection->query($sql);
+
+      session_start();
+      $_SESSION['started'] = true;
+
+      header('Location: ../../create-admin.php');
     }
   }
 
