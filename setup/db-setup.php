@@ -85,6 +85,16 @@
                 <?php
                   }
                 ?>
+                <?php
+                  if (isset($_GET['configexists'])) {
+                ?>
+                <div class="uk-alert-danger" uk-alert>
+                  <a class="uk-alert-close" uk-close></a>
+                  <p>Configuration file already exists. Remove it and retry.</p>
+                </div>
+                <?php
+                  }
+                ?>
                 <div class="uk-card-header">
                   <span class="uk-text-bold">Step Two:</span> Database Setup
                 </div>
