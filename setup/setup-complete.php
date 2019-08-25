@@ -65,19 +65,14 @@
             <div class="uk-width-1-1@s uk-width-1-5@l uk-width-1-3@xl"></div>
             <div class="uk-width-1-1@s uk-width-3-5@l uk-width-1-3@xl">
               <div class="uk-card uk-card-default">
-                <div class="uk-alert-warning" uk-alert>
-                  <a class="uk-alert-close" uk-close></a>
-                  <p><span class="uk-text-bold">Development Notice:</span> Please be aware that you are viewing a pre-alpha version of Pluto and things are subject to change.</p>
-                </div>
                 <div class="uk-card-header">
-                  <span class="uk-text-bold">Step One:</span> Begin Installation
+                  <span class="uk-text-bold">Step Four:</span> Remove Setup Folder
                 </div>
                 <div class="uk-card-body">
                   <center>
-                    <h2>Pluto Software Setup</h2>
-                    <p>Before we begin our Pluto journey we must prepare. This setup is required before you blast off!</p>
+                    <p>Congratulations you've finished the setup. <span class="uk-text-bold">You must remove the <code>/setup</code> folder to access the rest of pluto!</span></p>
                     <a href="https://pluto.crypticnode.host/docs" class="uk-button uk-button-secondary" target="_blank">Documentation</a>
-                    <a href="db-setup.php" class="uk-button uk-button-primary">Begin Setup</a>
+                    <a href="../admin/" class="uk-button uk-button-primary">Dashboard</a>
                   </center>
                 </div>
               </div>

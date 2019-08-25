@@ -32,6 +32,10 @@
     IN THE SOFTWARE.
 
 */
+
+session_start();
+
+if(isset($_SESSION['started'])) {
 ?>
 
 <html>
@@ -65,19 +69,64 @@
             <div class="uk-width-1-1@s uk-width-1-5@l uk-width-1-3@xl"></div>
             <div class="uk-width-1-1@s uk-width-3-5@l uk-width-1-3@xl">
               <div class="uk-card uk-card-default">
-                <div class="uk-alert-warning" uk-alert>
+                <?php
+                  if (isset($_GET['sqlerror'])) {
+                ?>
+                <div class="uk-alert-danger" uk-alert>
                   <a class="uk-alert-close" uk-close></a>
-                  <p><span class="uk-text-bold">Development Notice:</span> Please be aware that you are viewing a pre-alpha version of Pluto and things are subject to change.</p>
+                  <p><?php echo $_GET['sqlerror'] ?></p>
                 </div>
+                <?php
+                  }
+                ?>
                 <div class="uk-card-header">
-                  <span class="uk-text-bold">Step One:</span> Begin Installation
+                  <span class="uk-text-bold">Step Three:</span> Create Admin
                 </div>
                 <div class="uk-card-body">
                   <center>
-                    <h2>Pluto Software Setup</h2>
-                    <p>Before we begin our Pluto journey we must prepare. This setup is required before you blast off!</p>
-                    <a href="https://pluto.crypticnode.host/docs" class="uk-button uk-button-secondary" target="_blank">Documentation</a>
-                    <a href="db-setup.php" class="uk-button uk-button-primary">Begin Setup</a>
+                    <p>Fill in the information to create your first admin user.</p>
+                    <form action="resources/process/CreateAdmin.php" method="POST">
+                      <fieldset class="uk-fieldset">
+                        <div class="uk-margin">
+                          <div class="uk-position-relative">
+                            <input name="admin-firstname" class="uk-input" type="text" placeholder="First Name" required>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <div class="uk-position-relative">
+                            <input name="admin-lastname" class="uk-input" type="text" placeholder="Last Name" required>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <div class="uk-position-relative">
+                            <input name="admin-idn" class="uk-input" type="text" placeholder="Identification Number" required>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <div class="uk-position-relative">
+                            <input name="admin-email" class="uk-input" type="email" placeholder="Email Address" required>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <div class="uk-position-relative">
+                            <input name="admin-password" class="uk-input" type="password" placeholder="Password" required>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <div class="uk-position-relative">
+                            <input name="admin-confirm" class="uk-input" type="password" placeholder="Confirm Password" required>
+                          </div>
+                        </div>
+                        <div class="uk-margin">
+                          <a href="db-setup.php" class="uk-button uk-button-secondary">
+                          <span class="ion-reply"></span>&nbsp; Back
+                          </a>
+                          <button name="submit" type="submit" class="uk-button uk-button-primary">
+                          <span class="ion-forward"></span>&nbsp; Continue
+                          </button>
+                        </div>
+                      </fieldset>
+                    </form>
                   </center>
                 </div>
               </div>
@@ -89,3 +138,11 @@
     </div>
   </body>
 </html>
+
+<?php
+}
+
+else {
+  header('Location: index.php');
+}
+?>
